@@ -1,9 +1,6 @@
 name: Daily Feishu Digest
 
 on:
-  schedule:
-    # 00:00 UTC = 08:00 Asia/Shanghai
-    - cron: '0 0 * * *'
   workflow_dispatch:
 
 jobs:
