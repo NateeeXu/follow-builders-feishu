@@ -4,7 +4,7 @@
 // Follow Builders — Delivery Script
 // ============================================================================
 // Sends a digest to the user via their chosen delivery method.
-// Supports: Telegram bot, Email (via Resend), or stdout (default).
+// Supports: Telegram bot, Email (via Resend), Feishu webhook, or stdout (default).
 //
 // Usage:
 //   echo "digest text" | node deliver.js
@@ -17,6 +17,7 @@
 // Delivery methods:
 //   - "telegram": sends via Telegram Bot API (needs TELEGRAM_BOT_TOKEN + chat ID)
 //   - "email": sends via Resend API (needs RESEND_API_KEY + email address)
+//   - "feishu": sends via Feishu custom bot webhook (needs FEISHU_WEBHOOK_URL)
 //   - "stdout" (default): just prints to terminal
 // ============================================================================
 
@@ -25,6 +26,7 @@ import { existsSync } from 'fs';
 import { join } from 'path';
 import { homedir } from 'os';
 import { config as loadEnv } from 'dotenv';
+import { createHmac } from 'crypto';
 
 // -- Constants ---------------------------------------------------------------
 
@@ -34,20 +36,23 @@ const ENV_PATH = join(USER_DIR, '.env');
 
 // -- Read input --------------------------------------------------------------
 
-// The digest text can come from stdin, --message flag, or --file flag
-async function getDigestText() {
-  const args = process.argv.slice(2);
+function getArgValue(args, flag) {
+  const index = args.indexOf(flag);
+  return index !== -1 ? args[index + 1] : undefined;
+}
 
+// The digest text can come from stdin, --message flag, or --file flag
+async function getDigestText(args) {
   // Check --message flag
-  const msgIdx = args.indexOf('--message');
-  if (msgIdx !== -1 && args[msgIdx + 1]) {
-    return args[msgIdx + 1];
+  const message = getArgValue(args, '--message');
+  if (message) {
+    return message;
   }
 
   // Check --file flag
-  const fileIdx = args.indexOf('--file');
-  if (fileIdx !== -1 && args[fileIdx + 1]) {
-    return await readFile(args[fileIdx + 1], 'utf-8');
+  const filePath = getArgValue(args, '--file');
+  if (filePath) {
+    return await readFile(filePath, 'utf-8');
   }
 
   // Read from stdin
@@ -56,6 +61,27 @@ async function getDigestText() {
     chunks.push(chunk);
   }
   return Buffer.concat(chunks).toString('utf-8');
+}
+
+function splitText(text, maxLen) {
+  const chunks = [];
+  let remaining = text.trim();
+
+  while (remaining.length > 0) {
+    if (remaining.length <= maxLen) {
+      chunks.push(remaining);
+      break;
+    }
+
+    let splitAt = remaining.lastIndexOf('\n\n', maxLen);
+    if (splitAt < maxLen * 0.5) splitAt = remaining.lastIndexOf('\n', maxLen);
+    if (splitAt < maxLen * 0.5) splitAt = maxLen;
+
+    chunks.push(remaining.slice(0, splitAt).trimEnd());
+    remaining = remaining.slice(splitAt).trimStart();
+  }
+
+  return chunks;
 }
 
 // -- Telegram Delivery -------------------------------------------------------
@@ -149,19 +175,83 @@ async function sendEmail(text, apiKey, toEmail) {
   }
 }
 
+// -- Feishu Delivery ---------------------------------------------------------
+
+function createFeishuSign(secret, timestamp) {
+  const stringToSign = `${timestamp}\n${secret}`;
+  return createHmac('sha256', stringToSign).update('').digest('base64');
+}
+
+function parseJSONOrText(text) {
+  try {
+    return JSON.parse(text);
+  } catch {
+    return { raw: text };
+  }
+}
+
+async function sendFeishu(text, webhookUrl, signSecret) {
+  // Feishu custom bot text messages can be rejected if the payload is too large.
+  // Keep chunks conservative so Markdown digests remain deliverable.
+  const MAX_LEN = 3500;
+  const chunks = splitText(text, MAX_LEN);
+
+  for (const [index, chunk] of chunks.entries()) {
+    const timestamp = Math.floor(Date.now() / 1000).toString();
+    const payload = {
+      msg_type: 'text',
+      content: {
+        text: chunks.length > 1 ? `(${index + 1}/${chunks.length})\n${chunk}` : chunk
+      }
+    };
+
+    if (signSecret) {
+      payload.timestamp = timestamp;
+      payload.sign = createFeishuSign(signSecret, timestamp);
+    }
+
+    const res = await fetch(webhookUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    const responseText = await res.text();
+    const responseBody = parseJSONOrText(responseText);
+
+    if (!res.ok) {
+      throw new Error(`Feishu webhook HTTP error (${res.status} ${res.statusText}): ${responseText}`);
+    }
+
+    const rawCode = responseBody.code ?? responseBody.StatusCode;
+    const code = typeof rawCode === 'string' ? Number(rawCode) : rawCode;
+    if (code !== 0) {
+      const message = responseBody.msg || responseBody.message || responseBody.StatusMessage || responseText;
+      throw new Error(`Feishu webhook error: code=${rawCode}, message=${message}`);
+    }
+
+    if (chunks.length > 1) await new Promise(r => setTimeout(r, 500));
+  }
+}
+
 // -- Main --------------------------------------------------------------------
 
 async function main() {
   // Load env and config
   loadEnv({ path: ENV_PATH });
+  const args = process.argv.slice(2);
 
   let config = {};
   if (existsSync(CONFIG_PATH)) {
     config = JSON.parse(await readFile(CONFIG_PATH, 'utf-8'));
   }
 
-  const delivery = config.delivery || { method: 'stdout' };
-  const digestText = await getDigestText();
+  const methodOverride = getArgValue(args, '--method') || process.env.FOLLOW_BUILDERS_DELIVERY_METHOD;
+  const configuredDelivery = config.delivery || { method: 'stdout' };
+  const delivery = methodOverride
+    ? { ...configuredDelivery, method: methodOverride }
+    : configuredDelivery;
+  const digestText = await getDigestText(args);
 
   if (!digestText || digestText.trim().length === 0) {
     console.log(JSON.stringify({ status: 'skipped', reason: 'Empty digest text' }));
@@ -194,6 +284,19 @@ async function main() {
           status: 'ok',
           method: 'email',
           message: `Digest sent to ${toEmail}`
+        }));
+        break;
+      }
+
+      case 'feishu': {
+        const webhookUrl = process.env.FEISHU_WEBHOOK_URL;
+        const signSecret = process.env.FEISHU_SIGN_SECRET;
+        if (!webhookUrl) throw new Error('FEISHU_WEBHOOK_URL not found in environment');
+        await sendFeishu(digestText, webhookUrl, signSecret);
+        console.log(JSON.stringify({
+          status: 'ok',
+          method: 'feishu',
+          message: 'Digest sent to Feishu'
         }));
         break;
       }

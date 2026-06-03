@@ -118,6 +118,57 @@ is fetched centrally and updated daily.
 
 See [examples/sample-digest.md](examples/sample-digest.md) for what the output looks like.
 
+## Daily Feishu Automation
+
+This repo can also run a fully automated daily Chinese digest and push it to a
+Feishu group through a custom bot webhook.
+
+### Configure the Feishu bot
+
+1. In your Feishu group, add a custom bot.
+2. Copy the bot webhook URL.
+3. Optional but recommended: enable signature verification and copy the signing
+   secret.
+4. Do not commit the webhook URL, signing secret, or OpenAI API key to the repo.
+
+### GitHub Secrets
+
+Add these secrets in your GitHub repo settings:
+
+- `OPENAI_API_KEY` - used by `scripts/summarize.js` to generate the Chinese digest.
+- `FEISHU_WEBHOOK_URL` - the Feishu custom bot webhook URL.
+- `FEISHU_SIGN_SECRET` - optional Feishu signing secret.
+
+### Local test
+
+From the repo root:
+
+```bash
+cd scripts && npm install
+cd ..
+export OPENAI_API_KEY="your-openai-api-key"
+export FEISHU_WEBHOOK_URL="your-feishu-webhook-url"
+export FEISHU_SIGN_SECRET="your-feishu-sign-secret" # optional
+node scripts/run-daily.js
+```
+
+You can also test each step:
+
+```bash
+cd scripts
+node prepare-digest.js | node summarize.js | node deliver.js --method feishu
+```
+
+### Scheduled push
+
+The workflow `.github/workflows/daily-feishu.yml` runs every day at `00:00 UTC`,
+which is `08:00` in Beijing. It installs the npm dependencies under `scripts/`
+and runs:
+
+```bash
+node scripts/run-daily.js
+```
+
 ## Privacy
 
 - No API keys are sent anywhere — all content is fetched centrally
