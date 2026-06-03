@@ -1,6 +1,6 @@
 {
   "site": "AI Builders Daily",
-  "generatedAt": "2026-06-03T17:24:32.211Z",
+  "generatedAt": "2026-06-03T17:33:55.053Z",
   "timezone": "Asia/Shanghai",
   "feedGeneratedAt": "2026-06-03T08:03:30.181Z",
   "categories": [
@@ -692,24 +692,6 @@
       "isHighlight": false
     },
     {
-      "id": "tweet-2061862134469062850",
-      "type": "tweet",
-      "title": "This is what education in the age of AI looks like",
-      "text": "This is what education in the age of AI looks like. Start with the language: the linguistic surface is your roadmap. Much like an SDK has a set of function definitions, human language is the new API to the world. It also always has been… there's never been an expert in any field without mastery over its language. The distinction is that English alone could not produce tangible things. You had to translate it into machine instruction, through learning or delegation to others. You can now go direct.",
-      "summary": "This is what education in the age of AI looks like. Start with the language: the linguistic surface is your roadmap. Much like an SDK has a set of function definitions, human language is the new API to the world. It als...",
-      "author": "Guillermo Rauch",
-      "source": "@rauchg",
-      "url": "https://x.com/rauchg/status/2061862134469062850",
-      "publishedAt": "2026-06-02T17:26:55.000Z",
-      "likes": 765,
-      "category": "Model / Infra",
-      "score": 57,
-      "reason": "24 小时内发布；有原文链接；互动较高",
-      "matchedKeywords": [],
-      "rank": 32,
-      "isHighlight": false
-    },
-    {
       "id": "tweet-2061878314311266552",
       "type": "tweet",
       "title": "SWE benchmarks don’t necessarily capture app building capabilities",
@@ -724,7 +706,7 @@
       "score": 56,
       "reason": "24 小时内发布；有原文链接；正文包含链接；互动较高",
       "matchedKeywords": [],
-      "rank": 33,
+      "rank": 32,
       "isHighlight": false
     },
     {
@@ -742,7 +724,7 @@
       "score": 55,
       "reason": "12 小时内发布；有原文链接；正文包含链接",
       "matchedKeywords": [],
-      "rank": 34,
+      "rank": 33,
       "isHighlight": false
     },
     {
@@ -760,7 +742,7 @@
       "score": 55,
       "reason": "24 小时内发布；有原文链接；正文包含链接",
       "matchedKeywords": [],
-      "rank": 35,
+      "rank": 34,
       "isHighlight": false
     },
     {
@@ -778,7 +760,7 @@
       "score": 52,
       "reason": "24 小时内发布；有原文链接；正文包含链接",
       "matchedKeywords": [],
-      "rank": 36,
+      "rank": 35,
       "isHighlight": false
     },
     {
@@ -794,6 +776,24 @@
       "likes": 16278,
       "category": "Model / Infra",
       "score": 52,
+      "reason": "48 小时内发布；有原文链接；互动较高",
+      "matchedKeywords": [],
+      "rank": 36,
+      "isHighlight": false
+    },
+    {
+      "id": "tweet-2061862134469062850",
+      "type": "tweet",
+      "title": "This is what education in the age of AI looks like",
+      "text": "This is what education in the age of AI looks like. Start with the language: the linguistic surface is your roadmap. Much like an SDK has a set of function definitions, human language is the new API to the world. It also always has been… there's never been an expert in any field without mastery over its language. The distinction is that English alone could not produce tangible things. You had to translate it into machine instruction, through learning or delegation to others. You can now go direct.",
+      "summary": "This is what education in the age of AI looks like. Start with the language: the linguistic surface is your roadmap. Much like an SDK has a set of function definitions, human language is the new API to the world. It als...",
+      "author": "Guillermo Rauch",
+      "source": "@rauchg",
+      "url": "https://x.com/rauchg/status/2061862134469062850",
+      "publishedAt": "2026-06-02T17:26:55.000Z",
+      "likes": 765,
+      "category": "Model / Infra",
+      "score": 51,
       "reason": "48 小时内发布；有原文链接；互动较高",
       "matchedKeywords": [],
       "rank": 37,
