@@ -1,6 +1,6 @@
 {
   "site": "AI Builders Daily",
-  "generatedAt": "2026-06-03T17:33:55.053Z",
+  "generatedAt": "2026-06-03T23:55:10.927Z",
   "timezone": "Asia/Shanghai",
   "feedGeneratedAt": "2026-06-03T08:03:30.181Z",
   "categories": [
@@ -54,15 +54,15 @@
     "tweet-2061934154732974376",
     "tweet-2061907897928528349",
     "tweet-2061907538741006796",
-    "tweet-2061876999564791952",
     "tweet-2061846283263103274",
     "tweet-2061829558999912680",
     "tweet-2061809689973944724",
     "podcast-245db97c-5de8-11f1-beb7-d7c1b176fe75",
+    "tweet-2061876999564791952",
     "tweet-2062025667852812583",
     "tweet-2061974298760495132",
-    "tweet-2061924300698091760",
-    "tweet-2062057881424506950"
+    "tweet-2062057881424506950",
+    "tweet-2062062585391014245"
   ],
   "items": [
     {
@@ -78,7 +78,7 @@
       "likes": 462,
       "category": "AI Coding",
       "score": 100,
-      "reason": "包含 coding / agents 关键词；24 小时内发布；有原文链接；互动较高",
+      "reason": "包含 coding / agents 关键词；48 小时内发布；有原文链接；互动较高",
       "matchedKeywords": [
         "coding",
         "code",
@@ -100,7 +100,7 @@
       "likes": 125,
       "category": "Blogs",
       "score": 100,
-      "reason": "包含 available / claude / blog 关键词；24 小时内发布；有原文链接；正文包含链接；互动较高",
+      "reason": "包含 available / claude / blog 关键词；48 小时内发布；有原文链接；正文包含链接；互动较高",
       "matchedKeywords": [
         "available",
         "claude",
@@ -122,34 +122,13 @@
       "likes": 3339,
       "category": "AI Coding",
       "score": 100,
-      "reason": "包含 claude code 关键词；24 小时内发布；有原文链接；正文包含链接；互动较高",
+      "reason": "包含 claude code 关键词；48 小时内发布；有原文链接；正文包含链接；互动较高",
       "matchedKeywords": [
         "claude code",
         "code",
         "claude"
       ],
       "rank": 3,
-      "isHighlight": true
-    },
-    {
-      "id": "tweet-2061876999564791952",
-      "type": "tweet",
-      "title": "Tons of goodies for use of codex for day to day work",
-      "text": "Tons of goodies for use of codex for day to day work. If you are on a business plan you can now host and share websites, we launched vastly improved plugins and skills for broad roles and you can give feedback to your agent through visual annotations in docs, slides, sheets and more.",
-      "summary": "Tons of goodies for use of codex for day to day work. If you are on a business plan you can now host and share websites, we launched vastly improved plugins and skills for broad roles and you can give feedback to your a...",
-      "author": "Thibault Sottiaux",
-      "source": "@thsottiaux",
-      "url": "https://x.com/thsottiaux/status/2061876999564791952",
-      "publishedAt": "2026-06-02T18:25:59.000Z",
-      "likes": 1416,
-      "category": "AI Coding",
-      "score": 100,
-      "reason": "包含 agent 关键词；24 小时内发布；有原文链接；互动较高",
-      "matchedKeywords": [
-        "codex",
-        "agent"
-      ],
-      "rank": 4,
       "isHighlight": true
     },
     {
@@ -175,7 +154,7 @@
         "enterprise",
         "claude"
       ],
-      "rank": 5,
+      "rank": 4,
       "isHighlight": true
     },
     {
@@ -198,7 +177,7 @@
         "model",
         "claude"
       ],
-      "rank": 6,
+      "rank": 5,
       "isHighlight": true
     },
     {
@@ -220,7 +199,7 @@
         "ide",
         "agents"
       ],
-      "rank": 7,
+      "rank": 6,
       "isHighlight": true
     },
     {
@@ -243,6 +222,27 @@
         "training",
         "podcast",
         "interview"
+      ],
+      "rank": 7,
+      "isHighlight": true
+    },
+    {
+      "id": "tweet-2061876999564791952",
+      "type": "tweet",
+      "title": "Tons of goodies for use of codex for day to day work",
+      "text": "Tons of goodies for use of codex for day to day work. If you are on a business plan you can now host and share websites, we launched vastly improved plugins and skills for broad roles and you can give feedback to your agent through visual annotations in docs, slides, sheets and more.",
+      "summary": "Tons of goodies for use of codex for day to day work. If you are on a business plan you can now host and share websites, we launched vastly improved plugins and skills for broad roles and you can give feedback to your a...",
+      "author": "Thibault Sottiaux",
+      "source": "@thsottiaux",
+      "url": "https://x.com/thsottiaux/status/2061876999564791952",
+      "publishedAt": "2026-06-02T18:25:59.000Z",
+      "likes": 1416,
+      "category": "AI Coding",
+      "score": 96,
+      "reason": "包含 agent 关键词；48 小时内发布；有原文链接；互动较高",
+      "matchedKeywords": [
+        "codex",
+        "agent"
       ],
       "rank": 8,
       "isHighlight": true
@@ -290,26 +290,6 @@
       "isHighlight": true
     },
     {
-      "id": "tweet-2061924300698091760",
-      "type": "tweet",
-      "title": "From OpenAI's latest Codex report: \"Knowledge workers now represent about 20% of Codex users an...",
-      "text": "From OpenAI's latest Codex report: \"Knowledge workers now represent about 20% of Codex users and are adopting it more than 3 times as fast as developers The fastest growing task types for knowledge workers are: Data Analysis (110% growth week over week); Research (+37%), and Knowledge Artifacts (+36%)\"",
-      "summary": "From OpenAI's latest Codex report: \"Knowledge workers now represent about 20% of Codex users and are adopting it more than 3 times as fast as developers The fastest growing task types for knowledge workers are: Data Ana...",
-      "author": "Zara Zhang",
-      "source": "@zarazhangrui",
-      "url": "https://x.com/zarazhangrui/status/2061924300698091760",
-      "publishedAt": "2026-06-02T21:33:56.000Z",
-      "likes": 61,
-      "category": "AI Coding",
-      "score": 83,
-      "reason": "包含 codex 关键词；24 小时内发布；有原文链接；互动较高",
-      "matchedKeywords": [
-        "codex"
-      ],
-      "rank": 11,
-      "isHighlight": true
-    },
-    {
       "id": "tweet-2062057881424506950",
       "type": "tweet",
       "title": "ChatGPT Whether you understand the name or not",
@@ -321,12 +301,12 @@
       "publishedAt": "2026-06-03T06:24:44.000Z",
       "likes": 1111,
       "category": "Agents / Workflow",
-      "score": 82,
-      "reason": "包含 agents 关键词；12 小时内发布；有原文链接；互动较高",
+      "score": 78,
+      "reason": "包含 agents 关键词；24 小时内发布；有原文链接；互动较高",
       "matchedKeywords": [
         "agents"
       ],
-      "rank": 12,
+      "rank": 11,
       "isHighlight": true
     },
     {
@@ -341,12 +321,12 @@
       "publishedAt": "2026-06-03T06:43:26.000Z",
       "likes": 7,
       "category": "AI Coding",
-      "score": 81,
-      "reason": "包含 codex 关键词；12 小时内发布；有原文链接；正文包含链接",
+      "score": 77,
+      "reason": "包含 codex 关键词；24 小时内发布；有原文链接；正文包含链接",
       "matchedKeywords": [
         "codex"
       ],
-      "rank": 13,
+      "rank": 12,
       "isHighlight": true
     },
     {
@@ -366,47 +346,27 @@
       "matchedKeywords": [
         "models"
       ],
-      "rank": 14,
+      "rank": 13,
       "isHighlight": true
     },
     {
-      "id": "tweet-2061889286585405790",
+      "id": "tweet-2061924300698091760",
       "type": "tweet",
-      "title": "Frontend Slides now has 20k stars on GitHub 😮 It's insane how many people have already replace...",
-      "text": "Frontend Slides now has 20k stars on GitHub 😮 It's insane how many people have already replaced PPTs with HTML decks and never looked back Recently added new features including beautiful templates, publish as webpage/export as PDF, and inline editing https://t.co/eH6VDaqoeS https://t.co/L6RgRTDVOU",
-      "summary": "Frontend Slides now has 20k stars on GitHub 😮 It's insane how many people have already replaced PPTs with HTML decks and never looked back Recently added new features including beautiful templates, publish as webpage/e...",
+      "title": "From OpenAI's latest Codex report: \"Knowledge workers now represent about 20% of Codex users an...",
+      "text": "From OpenAI's latest Codex report: \"Knowledge workers now represent about 20% of Codex users and are adopting it more than 3 times as fast as developers The fastest growing task types for knowledge workers are: Data Analysis (110% growth week over week); Research (+37%), and Knowledge Artifacts (+36%)\"",
+      "summary": "From OpenAI's latest Codex report: \"Knowledge workers now represent about 20% of Codex users and are adopting it more than 3 times as fast as developers The fastest growing task types for knowledge workers are: Data Ana...",
       "author": "Zara Zhang",
       "source": "@zarazhangrui",
-      "url": "https://x.com/zarazhangrui/status/2061889286585405790",
-      "publishedAt": "2026-06-02T19:14:48.000Z",
-      "likes": 62,
+      "url": "https://x.com/zarazhangrui/status/2061924300698091760",
+      "publishedAt": "2026-06-02T21:33:56.000Z",
+      "likes": 61,
       "category": "AI Coding",
-      "score": 76,
-      "reason": "包含 github 关键词；24 小时内发布；有原文链接；正文包含链接；互动较高",
+      "score": 77,
+      "reason": "包含 codex 关键词；48 小时内发布；有原文链接；互动较高",
       "matchedKeywords": [
-        "github"
+        "codex"
       ],
-      "rank": 15,
-      "isHighlight": true
-    },
-    {
-      "id": "tweet-2062060142489973010",
-      "type": "tweet",
-      "title": "probably the best reward function for reasoning efficiency i've seen",
-      "text": "probably the best reward function for reasoning efficiency i've seen https://t.co/dSEVUJDap9",
-      "summary": "probably the best reward function for reasoning efficiency i've seen",
-      "author": "Swyx",
-      "source": "@swyx",
-      "url": "https://x.com/swyx/status/2062060142489973010",
-      "publishedAt": "2026-06-03T06:33:43.000Z",
-      "likes": 23,
-      "category": "Model / Infra",
-      "score": 75,
-      "reason": "包含 reasoning 关键词；12 小时内发布；有原文链接；正文包含链接",
-      "matchedKeywords": [
-        "reasoning"
-      ],
-      "rank": 16,
+      "rank": 14,
       "isHighlight": true
     },
     {
@@ -426,47 +386,7 @@
       "matchedKeywords": [
         "launch"
       ],
-      "rank": 17,
-      "isHighlight": true
-    },
-    {
-      "id": "tweet-2061893093696434578",
-      "type": "tweet",
-      "title": "Excited to partner with @Microsoft to enable everyone in the enterprise to build and deploy saf...",
-      "text": "Excited to partner with @Microsoft to enable everyone in the enterprise to build and deploy safe &amp; secure Fabric data apps. This is possible thanks to Microsoft's new Rayfin SDK. https://t.co/sAEKkXYFfy",
-      "summary": "Excited to partner with @Microsoft to enable everyone in the enterprise to build and deploy safe &amp; secure Fabric data apps. This is possible thanks to Microsoft's new Rayfin SDK.",
-      "author": "Amjad Masad",
-      "source": "@amasad",
-      "url": "https://x.com/amasad/status/2061893093696434578",
-      "publishedAt": "2026-06-02T19:29:56.000Z",
-      "likes": 501,
-      "category": "SaaS / Startup",
-      "score": 74,
-      "reason": "包含 enterprise 关键词；24 小时内发布；有原文链接；正文包含链接；互动较高",
-      "matchedKeywords": [
-        "enterprise"
-      ],
-      "rank": 18,
-      "isHighlight": true
-    },
-    {
-      "id": "tweet-2061866688866648573",
-      "type": "tweet",
-      "title": "@tryramp using the latest agent key with full read/write permissions",
-      "text": "@tryramp using the latest agent key with full read/write permissions. sent feedback through ramp feedback jfyi.",
-      "summary": "@tryramp using the latest agent key with full read/write permissions. sent feedback through ramp feedback jfyi.",
-      "author": "Nikunj Kothari",
-      "source": "@nikunj",
-      "url": "https://x.com/nikunj/status/2061866688866648573",
-      "publishedAt": "2026-06-02T17:45:00.000Z",
-      "likes": 0,
-      "category": "Agents / Workflow",
-      "score": 73,
-      "reason": "包含 agent 关键词；24 小时内发布；有原文链接",
-      "matchedKeywords": [
-        "agent"
-      ],
-      "rank": 19,
+      "rank": 15,
       "isHighlight": true
     },
     {
@@ -486,7 +406,67 @@
       "matchedKeywords": [
         "claude"
       ],
-      "rank": 20,
+      "rank": 16,
+      "isHighlight": true
+    },
+    {
+      "id": "tweet-2062060142489973010",
+      "type": "tweet",
+      "title": "probably the best reward function for reasoning efficiency i've seen",
+      "text": "probably the best reward function for reasoning efficiency i've seen https://t.co/dSEVUJDap9",
+      "summary": "probably the best reward function for reasoning efficiency i've seen",
+      "author": "Swyx",
+      "source": "@swyx",
+      "url": "https://x.com/swyx/status/2062060142489973010",
+      "publishedAt": "2026-06-03T06:33:43.000Z",
+      "likes": 23,
+      "category": "Model / Infra",
+      "score": 71,
+      "reason": "包含 reasoning 关键词；24 小时内发布；有原文链接；正文包含链接",
+      "matchedKeywords": [
+        "reasoning"
+      ],
+      "rank": 17,
+      "isHighlight": true
+    },
+    {
+      "id": "tweet-2061889286585405790",
+      "type": "tweet",
+      "title": "Frontend Slides now has 20k stars on GitHub 😮 It's insane how many people have already replace...",
+      "text": "Frontend Slides now has 20k stars on GitHub 😮 It's insane how many people have already replaced PPTs with HTML decks and never looked back Recently added new features including beautiful templates, publish as webpage/export as PDF, and inline editing https://t.co/eH6VDaqoeS https://t.co/L6RgRTDVOU",
+      "summary": "Frontend Slides now has 20k stars on GitHub 😮 It's insane how many people have already replaced PPTs with HTML decks and never looked back Recently added new features including beautiful templates, publish as webpage/e...",
+      "author": "Zara Zhang",
+      "source": "@zarazhangrui",
+      "url": "https://x.com/zarazhangrui/status/2061889286585405790",
+      "publishedAt": "2026-06-02T19:14:48.000Z",
+      "likes": 62,
+      "category": "AI Coding",
+      "score": 70,
+      "reason": "包含 github 关键词；48 小时内发布；有原文链接；正文包含链接；互动较高",
+      "matchedKeywords": [
+        "github"
+      ],
+      "rank": 18,
+      "isHighlight": true
+    },
+    {
+      "id": "tweet-2061893093696434578",
+      "type": "tweet",
+      "title": "Excited to partner with @Microsoft to enable everyone in the enterprise to build and deploy saf...",
+      "text": "Excited to partner with @Microsoft to enable everyone in the enterprise to build and deploy safe &amp; secure Fabric data apps. This is possible thanks to Microsoft's new Rayfin SDK. https://t.co/sAEKkXYFfy",
+      "summary": "Excited to partner with @Microsoft to enable everyone in the enterprise to build and deploy safe &amp; secure Fabric data apps. This is possible thanks to Microsoft's new Rayfin SDK.",
+      "author": "Amjad Masad",
+      "source": "@amasad",
+      "url": "https://x.com/amasad/status/2061893093696434578",
+      "publishedAt": "2026-06-02T19:29:56.000Z",
+      "likes": 501,
+      "category": "SaaS / Startup",
+      "score": 68,
+      "reason": "包含 enterprise 关键词；48 小时内发布；有原文链接；正文包含链接；互动较高",
+      "matchedKeywords": [
+        "enterprise"
+      ],
+      "rank": 19,
       "isHighlight": true
     },
     {
@@ -505,6 +485,26 @@
       "reason": "包含 founder 关键词；24 小时内发布；有原文链接；互动较高",
       "matchedKeywords": [
         "founder"
+      ],
+      "rank": 20,
+      "isHighlight": true
+    },
+    {
+      "id": "tweet-2061866688866648573",
+      "type": "tweet",
+      "title": "@tryramp using the latest agent key with full read/write permissions",
+      "text": "@tryramp using the latest agent key with full read/write permissions. sent feedback through ramp feedback jfyi.",
+      "summary": "@tryramp using the latest agent key with full read/write permissions. sent feedback through ramp feedback jfyi.",
+      "author": "Nikunj Kothari",
+      "source": "@nikunj",
+      "url": "https://x.com/nikunj/status/2061866688866648573",
+      "publishedAt": "2026-06-02T17:45:00.000Z",
+      "likes": 0,
+      "category": "Agents / Workflow",
+      "score": 67,
+      "reason": "包含 agent 关键词；48 小时内发布；有原文链接",
+      "matchedKeywords": [
+        "agent"
       ],
       "rank": 21,
       "isHighlight": true
@@ -530,60 +530,6 @@
       "isHighlight": false
     },
     {
-      "id": "tweet-2061907337154367865",
-      "type": "tweet",
-      "title": "Untitled update",
-      "text": "https://t.co/R6exTuF7P8",
-      "summary": "https://t.co/R6exTuF7P8",
-      "author": "Thariq",
-      "source": "@trq212",
-      "url": "https://x.com/trq212/status/2061907337154367865",
-      "publishedAt": "2026-06-02T20:26:32.000Z",
-      "likes": 5593,
-      "category": "Model / Infra",
-      "score": 62,
-      "reason": "24 小时内发布；有原文链接；正文包含链接；互动较高",
-      "matchedKeywords": [],
-      "rank": 23,
-      "isHighlight": false
-    },
-    {
-      "id": "tweet-2061874084649025728",
-      "type": "tweet",
-      "title": "Such a privilege to work with Microsoft to bring claws to enterprises",
-      "text": "Such a privilege to work with Microsoft to bring claws to enterprises! https://t.co/1psejBcL7S",
-      "summary": "Such a privilege to work with Microsoft to bring claws to enterprises!",
-      "author": "Peter Steinberger",
-      "source": "@steipete",
-      "url": "https://x.com/steipete/status/2061874084649025728",
-      "publishedAt": "2026-06-02T18:14:24.000Z",
-      "likes": 3413,
-      "category": "Model / Infra",
-      "score": 62,
-      "reason": "24 小时内发布；有原文链接；正文包含链接；互动较高",
-      "matchedKeywords": [],
-      "rank": 24,
-      "isHighlight": false
-    },
-    {
-      "id": "tweet-2061877813053907083",
-      "type": "tweet",
-      "title": "It’s been great working with Omar to get observability and verifiable workspaces into OpenClaw",
-      "text": "It’s been great working with Omar to get observability and verifiable workspaces into OpenClaw. https://t.co/2zVjntPUNh",
-      "summary": "It’s been great working with Omar to get observability and verifiable workspaces into OpenClaw.",
-      "author": "Peter Steinberger",
-      "source": "@steipete",
-      "url": "https://x.com/steipete/status/2061877813053907083",
-      "publishedAt": "2026-06-02T18:29:13.000Z",
-      "likes": 630,
-      "category": "Model / Infra",
-      "score": 61,
-      "reason": "24 小时内发布；有原文链接；正文包含链接；互动较高",
-      "matchedKeywords": [],
-      "rank": 25,
-      "isHighlight": false
-    },
-    {
       "id": "tweet-2062076227977126237",
       "type": "tweet",
       "title": "Thank god Phil Kim beat the insane woman named Brandee who literally doxxed my home address and...",
@@ -595,10 +541,10 @@
       "publishedAt": "2026-06-03T07:37:38.000Z",
       "likes": 31,
       "category": "Model / Infra",
-      "score": 60,
-      "reason": "12 小时内发布；有原文链接；正文包含链接；互动较高",
+      "score": 56,
+      "reason": "24 小时内发布；有原文链接；正文包含链接；互动较高",
       "matchedKeywords": [],
-      "rank": 26,
+      "rank": 23,
       "isHighlight": false
     },
     {
@@ -613,10 +559,10 @@
       "publishedAt": "2026-06-03T07:31:49.000Z",
       "likes": 35,
       "category": "Model / Infra",
-      "score": 60,
-      "reason": "12 小时内发布；有原文链接；正文包含链接；互动较高",
+      "score": 56,
+      "reason": "24 小时内发布；有原文链接；正文包含链接；互动较高",
       "matchedKeywords": [],
-      "rank": 27,
+      "rank": 24,
       "isHighlight": false
     },
     {
@@ -631,10 +577,10 @@
       "publishedAt": "2026-06-03T06:04:24.000Z",
       "likes": 37,
       "category": "Model / Infra",
-      "score": 60,
-      "reason": "12 小时内发布；有原文链接；正文包含链接；互动较高",
+      "score": 56,
+      "reason": "24 小时内发布；有原文链接；正文包含链接；互动较高",
       "matchedKeywords": [],
-      "rank": 28,
+      "rank": 25,
       "isHighlight": false
     },
     {
@@ -649,8 +595,62 @@
       "publishedAt": "2026-06-03T05:48:42.000Z",
       "likes": 43,
       "category": "Model / Infra",
-      "score": 60,
-      "reason": "12 小时内发布；有原文链接；正文包含链接；互动较高",
+      "score": 56,
+      "reason": "24 小时内发布；有原文链接；正文包含链接；互动较高",
+      "matchedKeywords": [],
+      "rank": 26,
+      "isHighlight": false
+    },
+    {
+      "id": "tweet-2061907337154367865",
+      "type": "tweet",
+      "title": "Untitled update",
+      "text": "https://t.co/R6exTuF7P8",
+      "summary": "https://t.co/R6exTuF7P8",
+      "author": "Thariq",
+      "source": "@trq212",
+      "url": "https://x.com/trq212/status/2061907337154367865",
+      "publishedAt": "2026-06-02T20:26:32.000Z",
+      "likes": 5593,
+      "category": "Model / Infra",
+      "score": 56,
+      "reason": "48 小时内发布；有原文链接；正文包含链接；互动较高",
+      "matchedKeywords": [],
+      "rank": 27,
+      "isHighlight": false
+    },
+    {
+      "id": "tweet-2061874084649025728",
+      "type": "tweet",
+      "title": "Such a privilege to work with Microsoft to bring claws to enterprises",
+      "text": "Such a privilege to work with Microsoft to bring claws to enterprises! https://t.co/1psejBcL7S",
+      "summary": "Such a privilege to work with Microsoft to bring claws to enterprises!",
+      "author": "Peter Steinberger",
+      "source": "@steipete",
+      "url": "https://x.com/steipete/status/2061874084649025728",
+      "publishedAt": "2026-06-02T18:14:24.000Z",
+      "likes": 3413,
+      "category": "Model / Infra",
+      "score": 56,
+      "reason": "48 小时内发布；有原文链接；正文包含链接；互动较高",
+      "matchedKeywords": [],
+      "rank": 28,
+      "isHighlight": false
+    },
+    {
+      "id": "tweet-2061877813053907083",
+      "type": "tweet",
+      "title": "It’s been great working with Omar to get observability and verifiable workspaces into OpenClaw",
+      "text": "It’s been great working with Omar to get observability and verifiable workspaces into OpenClaw. https://t.co/2zVjntPUNh",
+      "summary": "It’s been great working with Omar to get observability and verifiable workspaces into OpenClaw.",
+      "author": "Peter Steinberger",
+      "source": "@steipete",
+      "url": "https://x.com/steipete/status/2061877813053907083",
+      "publishedAt": "2026-06-02T18:29:13.000Z",
+      "likes": 630,
+      "category": "Model / Infra",
+      "score": 55,
+      "reason": "48 小时内发布；有原文链接；正文包含链接；互动较高",
       "matchedKeywords": [],
       "rank": 29,
       "isHighlight": false
@@ -667,8 +667,8 @@
       "publishedAt": "2026-06-02T20:29:55.000Z",
       "likes": 537,
       "category": "Model / Infra",
-      "score": 60,
-      "reason": "24 小时内发布；有原文链接；正文包含链接；互动较高",
+      "score": 54,
+      "reason": "48 小时内发布；有原文链接；正文包含链接；互动较高",
       "matchedKeywords": [],
       "rank": 30,
       "isHighlight": false
@@ -685,82 +685,10 @@
       "publishedAt": "2026-06-02T18:26:02.000Z",
       "likes": 101,
       "category": "Model / Infra",
-      "score": 58,
-      "reason": "24 小时内发布；有原文链接；正文包含链接；互动较高",
+      "score": 52,
+      "reason": "48 小时内发布；有原文链接；正文包含链接；互动较高",
       "matchedKeywords": [],
       "rank": 31,
-      "isHighlight": false
-    },
-    {
-      "id": "tweet-2061878314311266552",
-      "type": "tweet",
-      "title": "SWE benchmarks don’t necessarily capture app building capabilities",
-      "text": "SWE benchmarks don’t necessarily capture app building capabilities. ViBench does. https://t.co/zh663pe79v",
-      "summary": "SWE benchmarks don’t necessarily capture app building capabilities. ViBench does.",
-      "author": "Amjad Masad",
-      "source": "@amasad",
-      "url": "https://x.com/amasad/status/2061878314311266552",
-      "publishedAt": "2026-06-02T18:31:12.000Z",
-      "likes": 49,
-      "category": "Model / Infra",
-      "score": 56,
-      "reason": "24 小时内发布；有原文链接；正文包含链接；互动较高",
-      "matchedKeywords": [],
-      "rank": 32,
-      "isHighlight": false
-    },
-    {
-      "id": "tweet-2062055084138316176",
-      "type": "tweet",
-      "title": "@jacobeffron",
-      "text": "@jacobeffron https://t.co/SZSU872Ks0 https://t.co/BB4lMNtJJf",
-      "summary": "@jacobeffron",
-      "author": "Swyx",
-      "source": "@swyx",
-      "url": "https://x.com/swyx/status/2062055084138316176",
-      "publishedAt": "2026-06-03T06:13:37.000Z",
-      "likes": 1,
-      "category": "Model / Infra",
-      "score": 55,
-      "reason": "12 小时内发布；有原文链接；正文包含链接",
-      "matchedKeywords": [],
-      "rank": 33,
-      "isHighlight": false
-    },
-    {
-      "id": "tweet-2061936952400814392",
-      "type": "tweet",
-      "title": "Have to give the Devin/Windsurf team flowers for staying disciplied through the ups and downs a...",
-      "text": "Have to give the Devin/Windsurf team flowers for staying disciplied through the ups and downs and keeping at it. I know many AI native builders who love Devin now. Will hopefully find some more time to try it myself. https://t.co/lTMAr2s8Yd",
-      "summary": "Have to give the Devin/Windsurf team flowers for staying disciplied through the ups and downs and keeping at it. I know many AI native builders who love Devin now. Will hopefully find some more time to try it myself.",
-      "author": "Peter Yang",
-      "source": "@petergyang",
-      "url": "https://x.com/petergyang/status/2061936952400814392",
-      "publishedAt": "2026-06-02T22:24:13.000Z",
-      "likes": 29,
-      "category": "Model / Infra",
-      "score": 55,
-      "reason": "24 小时内发布；有原文链接；正文包含链接",
-      "matchedKeywords": [],
-      "rank": 34,
-      "isHighlight": false
-    },
-    {
-      "id": "tweet-2061892917514662152",
-      "type": "tweet",
-      "title": "Try it:",
-      "text": "Try it: https://t.co/F951xNM4Bp",
-      "summary": "Try it:",
-      "author": "Zara Zhang",
-      "source": "@zarazhangrui",
-      "url": "https://x.com/zarazhangrui/status/2061892917514662152",
-      "publishedAt": "2026-06-02T19:29:14.000Z",
-      "likes": 4,
-      "category": "Model / Infra",
-      "score": 52,
-      "reason": "24 小时内发布；有原文链接；正文包含链接",
-      "matchedKeywords": [],
-      "rank": 35,
       "isHighlight": false
     },
     {
@@ -778,7 +706,25 @@
       "score": 52,
       "reason": "48 小时内发布；有原文链接；互动较高",
       "matchedKeywords": [],
-      "rank": 36,
+      "rank": 32,
+      "isHighlight": false
+    },
+    {
+      "id": "tweet-2062055084138316176",
+      "type": "tweet",
+      "title": "@jacobeffron",
+      "text": "@jacobeffron https://t.co/SZSU872Ks0 https://t.co/BB4lMNtJJf",
+      "summary": "@jacobeffron",
+      "author": "Swyx",
+      "source": "@swyx",
+      "url": "https://x.com/swyx/status/2062055084138316176",
+      "publishedAt": "2026-06-03T06:13:37.000Z",
+      "likes": 1,
+      "category": "Model / Infra",
+      "score": 51,
+      "reason": "24 小时内发布；有原文链接；正文包含链接",
+      "matchedKeywords": [],
+      "rank": 33,
       "isHighlight": false
     },
     {
@@ -796,25 +742,43 @@
       "score": 51,
       "reason": "48 小时内发布；有原文链接；互动较高",
       "matchedKeywords": [],
-      "rank": 37,
+      "rank": 34,
       "isHighlight": false
     },
     {
-      "id": "tweet-2061866440513479135",
+      "id": "tweet-2061878314311266552",
       "type": "tweet",
-      "title": "@tryramp your CLI can't categorize :(",
-      "text": "@tryramp your CLI can't categorize :( https://t.co/rQ96oHQe9m",
-      "summary": "@tryramp your CLI can't categorize :(",
-      "author": "Nikunj Kothari",
-      "source": "@nikunj",
-      "url": "https://x.com/nikunj/status/2061866440513479135",
-      "publishedAt": "2026-06-02T17:44:01.000Z",
-      "likes": 0,
+      "title": "SWE benchmarks don’t necessarily capture app building capabilities",
+      "text": "SWE benchmarks don’t necessarily capture app building capabilities. ViBench does. https://t.co/zh663pe79v",
+      "summary": "SWE benchmarks don’t necessarily capture app building capabilities. ViBench does.",
+      "author": "Amjad Masad",
+      "source": "@amasad",
+      "url": "https://x.com/amasad/status/2061878314311266552",
+      "publishedAt": "2026-06-02T18:31:12.000Z",
+      "likes": 49,
       "category": "Model / Infra",
       "score": 50,
-      "reason": "24 小时内发布；有原文链接；正文包含链接",
+      "reason": "48 小时内发布；有原文链接；正文包含链接；互动较高",
       "matchedKeywords": [],
-      "rank": 38,
+      "rank": 35,
+      "isHighlight": false
+    },
+    {
+      "id": "tweet-2061936952400814392",
+      "type": "tweet",
+      "title": "Have to give the Devin/Windsurf team flowers for staying disciplied through the ups and downs a...",
+      "text": "Have to give the Devin/Windsurf team flowers for staying disciplied through the ups and downs and keeping at it. I know many AI native builders who love Devin now. Will hopefully find some more time to try it myself. https://t.co/lTMAr2s8Yd",
+      "summary": "Have to give the Devin/Windsurf team flowers for staying disciplied through the ups and downs and keeping at it. I know many AI native builders who love Devin now. Will hopefully find some more time to try it myself.",
+      "author": "Peter Yang",
+      "source": "@petergyang",
+      "url": "https://x.com/petergyang/status/2061936952400814392",
+      "publishedAt": "2026-06-02T22:24:13.000Z",
+      "likes": 29,
+      "category": "Model / Infra",
+      "score": 49,
+      "reason": "48 小时内发布；有原文链接；正文包含链接",
+      "matchedKeywords": [],
+      "rank": 36,
       "isHighlight": false
     },
     {
@@ -831,6 +795,42 @@
       "category": "Model / Infra",
       "score": 48,
       "reason": "48 小时内发布；有原文链接；互动较高",
+      "matchedKeywords": [],
+      "rank": 37,
+      "isHighlight": false
+    },
+    {
+      "id": "tweet-2061892917514662152",
+      "type": "tweet",
+      "title": "Try it:",
+      "text": "Try it: https://t.co/F951xNM4Bp",
+      "summary": "Try it:",
+      "author": "Zara Zhang",
+      "source": "@zarazhangrui",
+      "url": "https://x.com/zarazhangrui/status/2061892917514662152",
+      "publishedAt": "2026-06-02T19:29:14.000Z",
+      "likes": 4,
+      "category": "Model / Infra",
+      "score": 46,
+      "reason": "48 小时内发布；有原文链接；正文包含链接",
+      "matchedKeywords": [],
+      "rank": 38,
+      "isHighlight": false
+    },
+    {
+      "id": "tweet-2061866440513479135",
+      "type": "tweet",
+      "title": "@tryramp your CLI can't categorize :(",
+      "text": "@tryramp your CLI can't categorize :( https://t.co/rQ96oHQe9m",
+      "summary": "@tryramp your CLI can't categorize :(",
+      "author": "Nikunj Kothari",
+      "source": "@nikunj",
+      "url": "https://x.com/nikunj/status/2061866440513479135",
+      "publishedAt": "2026-06-02T17:44:01.000Z",
+      "likes": 0,
+      "category": "Model / Infra",
+      "score": 44,
+      "reason": "48 小时内发布；有原文链接；正文包含链接",
       "matchedKeywords": [],
       "rank": 39,
       "isHighlight": false
