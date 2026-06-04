@@ -1,6 +1,6 @@
 {
   "site": "AI Builders Daily",
-  "generatedAt": "2026-06-04T01:08:10.368Z",
+  "generatedAt": "2026-06-03T23:55:10.927Z",
   "timezone": "Asia/Shanghai",
   "feedGeneratedAt": "2026-06-03T08:03:30.181Z",
   "categories": [
@@ -280,8 +280,8 @@
       "publishedAt": "2026-06-03T00:52:37.000Z",
       "likes": 299,
       "category": "Model / Infra",
-      "score": 82,
-      "reason": "包含 model / models 关键词；48 小时内发布；有原文链接；互动较高",
+      "score": 88,
+      "reason": "包含 model / models 关键词；24 小时内发布；有原文链接；互动较高",
       "matchedKeywords": [
         "model",
         "models"
@@ -330,6 +330,26 @@
       "isHighlight": true
     },
     {
+      "id": "tweet-2061973280655904815",
+      "type": "tweet",
+      "title": "theUSshould lead on AI by continuing to develop the very best models, making sure they're safe,...",
+      "text": "theUSshould lead on AI by continuing to develop the very best models, making sure they're safe, and getting cyber tools into the hands of trusted defenders. the new EO gets the balance right.",
+      "summary": "theUSshould lead on AI by continuing to develop the very best models, making sure they're safe, and getting cyber tools into the hands of trusted defenders. the new EO gets the balance right.",
+      "author": "Sam Altman",
+      "source": "@sama",
+      "url": "https://x.com/sama/status/2061973280655904815",
+      "publishedAt": "2026-06-03T00:48:34.000Z",
+      "likes": 1740,
+      "category": "Model / Infra",
+      "score": 77,
+      "reason": "包含 models 关键词；24 小时内发布；有原文链接；互动较高",
+      "matchedKeywords": [
+        "models"
+      ],
+      "rank": 13,
+      "isHighlight": true
+    },
+    {
       "id": "tweet-2061924300698091760",
       "type": "tweet",
       "title": "From OpenAI's latest Codex report: \"Knowledge workers now represent about 20% of Codex users an...",
@@ -346,7 +366,7 @@
       "matchedKeywords": [
         "codex"
       ],
-      "rank": 13,
+      "rank": 14,
       "isHighlight": true
     },
     {
@@ -366,7 +386,7 @@
       "matchedKeywords": [
         "launch"
       ],
-      "rank": 14,
+      "rank": 15,
       "isHighlight": true
     },
     {
@@ -386,7 +406,7 @@
       "matchedKeywords": [
         "claude"
       ],
-      "rank": 15,
+      "rank": 16,
       "isHighlight": true
     },
     {
@@ -405,26 +425,6 @@
       "reason": "包含 reasoning 关键词；24 小时内发布；有原文链接；正文包含链接",
       "matchedKeywords": [
         "reasoning"
-      ],
-      "rank": 16,
-      "isHighlight": true
-    },
-    {
-      "id": "tweet-2061973280655904815",
-      "type": "tweet",
-      "title": "theUSshould lead on AI by continuing to develop the very best models, making sure they're safe,...",
-      "text": "theUSshould lead on AI by continuing to develop the very best models, making sure they're safe, and getting cyber tools into the hands of trusted defenders. the new EO gets the balance right.",
-      "summary": "theUSshould lead on AI by continuing to develop the very best models, making sure they're safe, and getting cyber tools into the hands of trusted defenders. the new EO gets the balance right.",
-      "author": "Sam Altman",
-      "source": "@sama",
-      "url": "https://x.com/sama/status/2061973280655904815",
-      "publishedAt": "2026-06-03T00:48:34.000Z",
-      "likes": 1740,
-      "category": "Model / Infra",
-      "score": 71,
-      "reason": "包含 models 关键词；48 小时内发布；有原文链接；互动较高",
-      "matchedKeywords": [
-        "models"
       ],
       "rank": 17,
       "isHighlight": true
@@ -470,6 +470,26 @@
       "isHighlight": true
     },
     {
+      "id": "tweet-2061962774918373592",
+      "type": "tweet",
+      "title": "Lucas joined us four years ago to sell ads",
+      "text": "Lucas joined us four years ago to sell ads. He’s leaving having lead a team of designers who consistently set the bar for taste and creative direction in AI. Much of what makes @every distinctive visually came from his brain—and you can see his influence across the AI ecosystem. As a founder, there nothing more rewarding than seeing someone like Lucas win—he’s going to do big things. And I am incredibly excited about the team and design culture he built @every that will continue to be inspired by his example and bar for excellence",
+      "summary": "Lucas joined us four years ago to sell ads. He’s leaving having lead a team of designers who consistently set the bar for taste and creative direction in AI. Much of what makes @every distinctive visually came from his...",
+      "author": "Dan Shipper",
+      "source": "@danshipper",
+      "url": "https://x.com/danshipper/status/2061962774918373592",
+      "publishedAt": "2026-06-03T00:06:49.000Z",
+      "likes": 69,
+      "category": "SaaS / Startup",
+      "score": 67,
+      "reason": "包含 founder 关键词；24 小时内发布；有原文链接；互动较高",
+      "matchedKeywords": [
+        "founder"
+      ],
+      "rank": 20,
+      "isHighlight": true
+    },
+    {
       "id": "tweet-2061866688866648573",
       "type": "tweet",
       "title": "@tryramp using the latest agent key with full read/write permissions",
@@ -486,7 +506,7 @@
       "matchedKeywords": [
         "agent"
       ],
-      "rank": 20,
+      "rank": 21,
       "isHighlight": true
     },
     {
@@ -505,26 +525,6 @@
       "reason": "包含 revenue 关键词；24 小时内发布；有原文链接；互动较高",
       "matchedKeywords": [
         "revenue"
-      ],
-      "rank": 21,
-      "isHighlight": false
-    },
-    {
-      "id": "tweet-2061962774918373592",
-      "type": "tweet",
-      "title": "Lucas joined us four years ago to sell ads",
-      "text": "Lucas joined us four years ago to sell ads. He’s leaving having lead a team of designers who consistently set the bar for taste and creative direction in AI. Much of what makes @every distinctive visually came from his brain—and you can see his influence across the AI ecosystem. As a founder, there nothing more rewarding than seeing someone like Lucas win—he’s going to do big things. And I am incredibly excited about the team and design culture he built @every that will continue to be inspired by his example and bar for excellence",
-      "summary": "Lucas joined us four years ago to sell ads. He’s leaving having lead a team of designers who consistently set the bar for taste and creative direction in AI. Much of what makes @every distinctive visually came from his...",
-      "author": "Dan Shipper",
-      "source": "@danshipper",
-      "url": "https://x.com/danshipper/status/2061962774918373592",
-      "publishedAt": "2026-06-03T00:06:49.000Z",
-      "likes": 69,
-      "category": "SaaS / Startup",
-      "score": 61,
-      "reason": "包含 founder 关键词；48 小时内发布；有原文链接；互动较高",
-      "matchedKeywords": [
-        "founder"
       ],
       "rank": 22,
       "isHighlight": false
