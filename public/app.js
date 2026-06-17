@@ -1,5 +1,8 @@
-const SIGNALS_URL = './data/latest.json';
-const REPOS_URL = './data/github-weekly.json';
+const DATA_PATHS = {
+  signals: './data/latest.json',
+  repos: './data/github-weekly.json',
+  history: './data/github-stars-history.json'
+};
 const ALL_CATEGORY = 'All';
 const HIGHLIGHTS_CATEGORY = 'Highlights';
 const PRACTICAL_CATEGORIES = new Set([
@@ -15,6 +18,7 @@ const PRACTICAL_CATEGORIES = new Set([
 const state = {
   signals: null,
   repos: null,
+  history: null,
   signalsCategory: ALL_CATEGORY,
   signalsQuery: '',
   signalsHighScoreOnly: false,
@@ -24,23 +28,32 @@ const state = {
   errors: []
 };
 
+function getElement(...selectors) {
+  for (const selector of selectors) {
+    const element = document.querySelector(selector);
+    if (element) return element;
+  }
+
+  return document.createElement('div');
+}
+
 const els = {
-  lastUpdated: document.querySelector('#lastUpdated'),
-  heroSignalsTotal: document.querySelector('#heroSignalsTotal'),
-  heroReposTotal: document.querySelector('#heroReposTotal'),
-  statsGrid: document.querySelector('#statsGrid'),
-  signalHighlights: document.querySelector('#signalHighlights'),
-  signalsCategoryTabs: document.querySelector('#signalsCategoryTabs'),
-  signalsSearchInput: document.querySelector('#signalsSearchInput'),
-  signalsHighScoreOnly: document.querySelector('#signalsHighScoreOnly'),
-  signalsResultsMeta: document.querySelector('#signalsResultsMeta'),
-  signalsGrid: document.querySelector('#signalsGrid'),
-  reposCategoryTabs: document.querySelector('#reposCategoryTabs'),
-  reposSearchInput: document.querySelector('#reposSearchInput'),
-  reposHighScoreOnly: document.querySelector('#reposHighScoreOnly'),
-  reposResultsMeta: document.querySelector('#reposResultsMeta'),
-  reposGrid: document.querySelector('#reposGrid'),
-  toolsGrid: document.querySelector('#toolsGrid')
+  lastUpdated: getElement('#lastUpdated'),
+  heroSignalsTotal: getElement('#heroSignalsTotal', '#heroTotal'),
+  heroReposTotal: getElement('#heroReposTotal'),
+  statsGrid: getElement('#statsGrid'),
+  signalHighlights: getElement('#signalHighlights', '#highlightList'),
+  signalsCategoryTabs: getElement('#signalsCategoryTabs', '#categoryTabs'),
+  signalsSearchInput: getElement('#signalsSearchInput', '#searchInput'),
+  signalsHighScoreOnly: getElement('#signalsHighScoreOnly', '#highScoreOnly'),
+  signalsResultsMeta: getElement('#signalsResultsMeta', '#resultsMeta'),
+  signalsGrid: getElement('#signalsGrid', '#itemsGrid'),
+  reposCategoryTabs: getElement('#reposCategoryTabs'),
+  reposSearchInput: getElement('#reposSearchInput'),
+  reposHighScoreOnly: getElement('#reposHighScoreOnly'),
+  reposResultsMeta: getElement('#reposResultsMeta'),
+  reposGrid: getElement('#reposGrid'),
+  toolsGrid: getElement('#toolsGrid')
 };
 
 function escapeHTML(value) {
@@ -50,6 +63,19 @@ function escapeHTML(value) {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#039;');
+}
+
+function dataUrl(path) {
+  return new URL(path, window.location.href);
+}
+
+function getError(source) {
+  return state.errors.find((error) => error.source === source);
+}
+
+function getErrorMessage(source, fallback) {
+  const error = getError(source);
+  return error ? `${error.message} (${error.url})` : fallback;
 }
 
 function unique(values) {
@@ -202,6 +228,14 @@ function renderStats() {
     ['Top repo category', topRepoCategory?.category || 'N/A', topRepoCategory ? `${topRepoCategory.count} repos` : 'No repo data']
   ];
 
+  if (state.errors.length) {
+    cards.push([
+      'Feed issues',
+      state.errors.length,
+      state.errors.map((error) => `${error.source}: ${error.url}`).join(' / ')
+    ]);
+  }
+
   els.statsGrid.innerHTML = cards.map(([label, value, meta]) => `
     <article class="stat-card">
       <span>${escapeHTML(label)}</span>
@@ -247,7 +281,7 @@ function renderRepoTabs() {
 
 function renderSignalHighlights() {
   if (!state.signals) {
-    els.signalHighlights.innerHTML = '<p class="empty-state">Builder Signals data is not available yet.</p>';
+    els.signalHighlights.innerHTML = `<p class="empty-state">${escapeHTML(getErrorMessage('Builder Signals', 'Builder Signals data is not available yet.'))}</p>`;
     return;
   }
 
@@ -275,7 +309,7 @@ function renderSignalHighlights() {
 
 function renderSignals(items) {
   if (!state.signals) {
-    els.signalsGrid.innerHTML = '<p class="empty-state">Builder Signals data is not available yet.</p>';
+    els.signalsGrid.innerHTML = `<p class="empty-state">${escapeHTML(getErrorMessage('Builder Signals', 'Builder Signals data is not available yet.'))}</p>`;
     els.signalsResultsMeta.textContent = '';
     return;
   }
@@ -364,7 +398,7 @@ function repoCard(repo) {
 
 function renderRepos(items) {
   if (!state.repos) {
-    els.reposGrid.innerHTML = '<p class="empty-state">GitHub Weekly Stars data is not available yet.</p>';
+    els.reposGrid.innerHTML = `<p class="empty-state">${escapeHTML(getErrorMessage('GitHub Weekly Stars', 'GitHub Weekly Stars data is not available yet.'))}</p>`;
     els.reposResultsMeta.textContent = '';
     return;
   }
@@ -383,7 +417,7 @@ function renderPracticalTools() {
   const tools = getPracticalTools();
 
   if (!state.repos) {
-    els.toolsGrid.innerHTML = '<p class="empty-state">GitHub Weekly Stars data is not available yet.</p>';
+    els.toolsGrid.innerHTML = `<p class="empty-state">${escapeHTML(getErrorMessage('GitHub Weekly Stars', 'GitHub Weekly Stars data is not available yet.'))}</p>`;
     return;
   }
 
@@ -426,29 +460,53 @@ function render() {
   renderPracticalTools();
 }
 
-async function fetchJSON(url) {
-  const response = await fetch(`${url}?t=${Date.now()}`);
-  if (!response.ok) throw new Error(`${url} returned HTTP ${response.status}`);
-  return response.json();
+async function fetchJSON(source, path) {
+  const url = dataUrl(path);
+  url.searchParams.set('t', String(Date.now()));
+
+  const response = await fetch(url.toString(), { cache: 'no-store' });
+  if (!response.ok) {
+    const error = new Error(`${source} returned HTTP ${response.status}`);
+    error.source = source;
+    error.url = url.pathname;
+    throw error;
+  }
+
+  try {
+    return await response.json();
+  } catch (err) {
+    const error = new Error(`${source} returned invalid JSON`);
+    error.source = source;
+    error.url = url.pathname;
+    error.cause = err;
+    throw error;
+  }
+}
+
+function recordFetchResult(result, stateKey, source, path) {
+  if (result.status === 'fulfilled') {
+    state[stateKey] = result.value;
+    return;
+  }
+
+  const reason = result.reason || new Error('Unknown fetch failure');
+  state.errors.push({
+    source,
+    message: reason.message || `${source} failed to load`,
+    url: reason.url || dataUrl(path).pathname
+  });
 }
 
 async function init() {
-  const [signalsResult, reposResult] = await Promise.allSettled([
-    fetchJSON(SIGNALS_URL),
-    fetchJSON(REPOS_URL)
+  const [signalsResult, reposResult, historyResult] = await Promise.allSettled([
+    fetchJSON('Builder Signals', DATA_PATHS.signals),
+    fetchJSON('GitHub Weekly Stars', DATA_PATHS.repos),
+    fetchJSON('GitHub Stars History', DATA_PATHS.history)
   ]);
 
-  if (signalsResult.status === 'fulfilled') {
-    state.signals = signalsResult.value;
-  } else {
-    state.errors.push(signalsResult.reason.message);
-  }
-
-  if (reposResult.status === 'fulfilled') {
-    state.repos = reposResult.value;
-  } else {
-    state.errors.push(reposResult.reason.message);
-  }
+  recordFetchResult(signalsResult, 'signals', 'Builder Signals', DATA_PATHS.signals);
+  recordFetchResult(reposResult, 'repos', 'GitHub Weekly Stars', DATA_PATHS.repos);
+  recordFetchResult(historyResult, 'history', 'GitHub Stars History', DATA_PATHS.history);
 
   render();
 }
