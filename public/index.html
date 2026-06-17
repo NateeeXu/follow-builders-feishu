@@ -1,61 +1,88 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="AI Builders Daily - latest AI builder messages, launches, agents, coding tools, infra and long-form updates.">
-    <title>AI Builders Daily</title>
+    <meta name="description" content="Shining Builders discovers what AI builders are saying and what they are building across Builder Signals and GitHub Weekly Stars.">
+    <title>Shining Builders</title>
     <link rel="stylesheet" href="./styles.css">
   </head>
   <body>
     <header class="site-header">
-      <nav class="topbar" aria-label="Top">
-        <a class="brand" href="./" aria-label="AI Builders Daily home">
-          <span class="brand-mark">AI</span>
-          <span>AI Builders Daily</span>
+      <nav class="topbar" aria-label="Top navigation">
+        <a class="brand" href="./" aria-label="Shining Builders home">
+          <span class="brand-mark">SB</span>
+          <span>Shining Builders</span>
         </a>
+        <div class="topnav" aria-label="Sections">
+          <a href="#builder-signals">Builder Signals</a>
+          <a href="#github-stars">GitHub Weekly Stars</a>
+          <a href="#practical-tools">Practical Tools</a>
+        </div>
         <div class="status-pill">
           <span class="status-dot"></span>
-          <span id="lastUpdated">Loading feed...</span>
+          <span id="lastUpdated">Loading feeds...</span>
         </div>
       </nav>
 
       <section class="hero">
         <div class="hero-copy">
-          <p class="eyebrow">Free static intelligence feed</p>
-          <h1>AI Builders Daily</h1>
-          <p class="hero-subtitle">最新 AI builders 消息、产品发布、agent workflow、coding 工具、模型基础设施与长内容。</p>
+          <p class="eyebrow">AI builder intelligence, rebuilt daily</p>
+          <h1>Shining Builders</h1>
+          <p class="hero-subtitle">Discover what AI builders are saying and what they are building.</p>
         </div>
         <div class="hero-panel" aria-label="Feed snapshot">
-          <span class="panel-label">Today</span>
-          <strong id="heroTotal">0</strong>
-          <span>items tracked</span>
+          <span class="panel-label">Signals</span>
+          <strong id="heroSignalsTotal">0</strong>
+          <span>builder updates</span>
+          <span class="panel-divider"></span>
+          <span class="panel-label">GitHub</span>
+          <strong id="heroReposTotal">0</strong>
+          <span>weekly repos</span>
         </div>
       </section>
     </header>
 
     <main>
-      <section class="stats-grid" id="statsGrid" aria-label="今日统计"></section>
+      <section class="stats-grid" id="statsGrid" aria-label="Site statistics"></section>
 
-      <section class="section-block">
+      <section class="section-block" id="builder-signals">
         <div class="section-heading">
           <div>
-            <p class="eyebrow">Highlights</p>
-            <h2>今日重点</h2>
-          </div>
-        </div>
-        <div class="highlight-list" id="highlightList"></div>
-      </section>
-
-      <section class="section-block">
-        <div class="section-heading browse-heading">
-          <div>
-            <p class="eyebrow">Browse</p>
-            <h2>分类与搜索</h2>
+            <p class="eyebrow">Builder Signals</p>
+            <h2>What builders are saying</h2>
           </div>
           <label class="high-score-toggle">
-            <input type="checkbox" id="highScoreOnly">
+            <input type="checkbox" id="signalsHighScoreOnly">
             <span>High score</span>
+          </label>
+        </div>
+
+        <div class="signal-highlights" id="signalHighlights"></div>
+
+        <div class="controls">
+          <div class="search-wrap">
+            <svg aria-hidden="true" viewBox="0 0 24 24">
+              <path d="M10.8 4.5a6.3 6.3 0 1 1 0 12.6 6.3 6.3 0 0 1 0-12.6Zm0 1.8a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9Zm5.2 10 4 4-1.3 1.3-4-4 1.3-1.3Z"></path>
+            </svg>
+            <input id="signalsSearchInput" type="search" placeholder="Search builders, topics, launches..." autocomplete="off">
+          </div>
+          <div class="tabs" id="signalsCategoryTabs" role="tablist" aria-label="Builder Signal categories"></div>
+        </div>
+
+        <div class="results-meta" id="signalsResultsMeta"></div>
+        <div class="items-grid" id="signalsGrid"></div>
+      </section>
+
+      <section class="section-block" id="github-stars">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">GitHub Weekly Stars</p>
+            <h2>Fast-moving AI projects</h2>
+          </div>
+          <label class="high-score-toggle">
+            <input type="checkbox" id="reposHighScoreOnly">
+            <span>High score repos</span>
           </label>
         </div>
 
@@ -64,18 +91,28 @@
             <svg aria-hidden="true" viewBox="0 0 24 24">
               <path d="M10.8 4.5a6.3 6.3 0 1 1 0 12.6 6.3 6.3 0 0 1 0-12.6Zm0 1.8a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9Zm5.2 10 4 4-1.3 1.3-4-4 1.3-1.3Z"></path>
             </svg>
-            <input id="searchInput" type="search" placeholder="Search builders, topics, tools..." autocomplete="off">
+            <input id="reposSearchInput" type="search" placeholder="Search repos, topics, languages..." autocomplete="off">
           </div>
-          <div class="tabs" id="categoryTabs" role="tablist" aria-label="分类"></div>
+          <div class="tabs" id="reposCategoryTabs" role="tablist" aria-label="GitHub repo categories"></div>
         </div>
 
-        <div class="results-meta" id="resultsMeta"></div>
-        <div class="items-grid" id="itemsGrid"></div>
+        <div class="results-meta" id="reposResultsMeta"></div>
+        <div class="repo-grid" id="reposGrid"></div>
+      </section>
+
+      <section class="section-block" id="practical-tools">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Practical Tools</p>
+            <h2>Useful repos worth trying</h2>
+          </div>
+        </div>
+        <div class="repo-grid compact" id="toolsGrid"></div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <span>Built by rules from public follow-builders feeds. No OpenAI API.</span>
+      <span>Built from public feeds and the GitHub REST API. No OpenAI API. No paid APIs.</span>
     </footer>
 
     <script src="./app.js" type="module"></script>

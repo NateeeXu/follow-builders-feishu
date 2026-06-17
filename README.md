@@ -1,33 +1,46 @@
-# AI Builders Daily
+# Shining Builders
 
-AI Builders Daily is a free static website for tracking the latest public messages from AI builders. It pulls the latest follow-builders feeds, classifies and scores items with deterministic keyword rules, writes static JSON, and deploys the site to GitHub Pages.
+Shining Builders is a free static website for discovering what AI builders are saying and what they are building.
 
-This version does not use the OpenAI API and does not require `OPENAI_API_KEY`, so it does not create OpenAI API costs.
+Version 2.0 keeps the original builder information feed as **Builder Signals** and adds **GitHub Weekly Stars**, a daily GitHub REST API scan for fast-moving, practical AI tools, skills, agents, MCP projects, AI coding projects, RAG tools, workflow automation projects, and developer tools.
+
+No paid APIs are used. The default website workflow does not use the OpenAI API and does not require `OPENAI_API_KEY`.
 
 ## What It Shows
 
-- Latest X/Twitter builder messages
-- Latest podcast and long-form items
-- Latest blog posts when available in the feed
-- Categories for AI coding, agents/workflow, product launches, SaaS/startups, model/infra, podcasts, and blogs
-- Search, category tabs, high-score filtering, score reasons, and original source links
+- **Builder Signals**: latest public X/Twitter builder messages, podcasts, long-form items, and blog posts from the existing follow-builders feeds.
+- **GitHub Weekly Stars**: public GitHub repositories matching AI builder keywords, filtered for active non-fork, non-archived repos with meaningful stars and recent pushes.
+- **Practical Tools**: high-scoring GitHub repos that look useful for builders, including AI coding, agents, MCP, workflow automation, developer tools, SaaS starter kits, and skills.
+- Search, category filtering, high-score filtering, score reasons, repo metadata, topics, and source links.
 
-## Free Daily Workflow
+## GitHub Weekly Stars
 
-The default workflow is `.github/workflows/daily-site.yml`.
+The GitHub scanner lives in `scripts/build-github-stars.js`.
 
-It runs every day at `00:00 UTC`, which is `08:00` in Beijing, and can also be started manually with `workflow_dispatch`.
+It searches public repositories with keywords including:
 
-The workflow:
+```text
+ai agent, llm agent, mcp, claude code, cursor, ai coding, coding agent, rag,
+workflow automation, ai tool, llm app, openai, anthropic, langchain,
+llamaindex, browser agent, developer tool, ai skill
+```
 
-1. Checks out the repo.
-2. Sets up Node.js.
-3. Runs `cd scripts && npm install`.
-4. Runs `node scripts/build-site.js`.
-5. Commits generated static files under `public/`.
-6. Deploys `public/` to GitHub Pages.
+The script prioritizes:
 
-No paid API or OpenAI secret is needed.
+- `fork:false`
+- `archived:false`
+- pushed within the last 30 days
+- stars greater than 20
+
+`GITHUB_TOKEN` is optional. If present, the script adds it to the GitHub request headers for higher rate limits. If it is not present, the script still runs in unauthenticated mode with fewer grouped searches.
+
+Generated files:
+
+- `public/data/latest.json`
+- `public/data/github-weekly.json`
+- `public/data/github-stars-history.json`
+
+`github-stars-history.json` stores the previous star count for each seen repo. On later runs, `weeklyStars` is calculated as the current star count minus the previous stored star count. First-time repos are marked as `newCandidate` and get `weeklyStars: 0`.
 
 ## Local Run
 
@@ -38,49 +51,52 @@ cd scripts
 npm install
 cd ..
 node scripts/build-site.js
+node scripts/build-github-stars.js
 ```
 
-The build writes:
+Optional syntax check:
 
-- `public/index.html`
-- `public/styles.css`
-- `public/app.js`
-- `public/data/latest.json`
+```bash
+node --check scripts/build-github-stars.js
+```
 
-You can open `public/index.html` directly in a browser. If browser security blocks local `fetch`, serve the folder with any static server.
+The static site is written under `public/`. You can serve that folder with any static server, or open `public/index.html` directly if your browser allows local `fetch`.
 
-## Enable GitHub Pages
+## Deploy To GitHub Pages
 
-In the GitHub repository:
+The default workflow is `.github/workflows/daily-site.yml`.
 
-1. Open `Settings`.
+It runs every day at `00:00 UTC`, which is `08:00` in Beijing, and can also be started manually with `workflow_dispatch`.
+
+The workflow:
+
+1. Checks out the repo.
+2. Sets up Node.js.
+3. Installs script dependencies.
+4. Runs `node scripts/build-site.js`.
+5. Runs `node scripts/build-github-stars.js` with the GitHub Actions `GITHUB_TOKEN`.
+6. Commits generated data and static files.
+7. Deploys `public/` to GitHub Pages.
+
+To enable GitHub Pages:
+
+1. Open the repository `Settings`.
 2. Open `Pages`.
 3. Set `Source` to `GitHub Actions`.
-4. Run the `Daily AI Builders Site` workflow once, or wait for the daily schedule.
-
-## Manual Workflow Run
-
-In GitHub:
-
-1. Open the `Actions` tab.
-2. Select `Daily AI Builders Site`.
-3. Click `Run workflow`.
-
-The workflow will rebuild `public/data/latest.json`, update the static files if needed, and deploy the latest site to GitHub Pages.
+4. Run the `Daily Shining Builders Site` workflow once, or wait for the daily schedule.
 
 ## Scripts
 
 - `scripts/prepare-digest.js` fetches the latest follow-builders feed JSON.
-- `scripts/build-site.js` runs `prepare-digest.js`, classifies and scores items without OpenAI, and builds the static site.
+- `scripts/build-site.js` builds Builder Signals and writes the static HTML shell.
+- `scripts/build-github-stars.js` builds GitHub Weekly Stars and updates star history.
 - `scripts/summarize.js` is retained only for the optional Feishu digest flow.
 
 ## Optional Feishu Flow
 
-`.github/workflows/daily-feishu.yml` is kept as a manual-only optional workflow. It is not the default daily workflow and it still requires OpenAI plus Feishu secrets if you choose to run it.
+`.github/workflows/daily-feishu.yml` is kept as a manual-only optional workflow. It is not the default daily website workflow and still requires OpenAI plus Feishu secrets if you choose to run it.
 
-For the free website flow, use `Daily AI Builders Site`.
-
-`.github/workflows/generate-feed.yml` is also manual-only. The default scheduled automation only builds and deploys the free static website from public follow-builders feeds.
+For the free website flow, use `Daily Shining Builders Site`.
 
 ## License
 

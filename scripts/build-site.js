@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 // ============================================================================
-// AI Builders Daily - Static Site Builder
+// Shining Builders - Builder Signals static data builder
 // ============================================================================
 // Free deterministic pipeline:
 //   1. Runs prepare-digest.js to fetch the latest public follow-builders feeds
@@ -27,8 +27,9 @@ const LOCAL_FEED_X_PATH = join(ROOT_DIR, 'feed-x.json');
 const LOCAL_FEED_PODCASTS_PATH = join(ROOT_DIR, 'feed-podcasts.json');
 const LOCAL_FEED_BLOGS_PATH = join(ROOT_DIR, 'feed-blogs.json');
 
+const SITE_NAME = 'Shining Builders';
 const CATEGORIES = [
-  '今日重点',
+  'Highlights',
   'AI Coding',
   'Agents / Workflow',
   'Product Launch',
@@ -256,7 +257,7 @@ function truncate(value, maxLength) {
 
 function titleFromText(text) {
   const withoutUrls = stripUrls(text);
-  const firstLine = withoutUrls.split(/[.!?\n。！？]/).find(Boolean) || withoutUrls;
+  const firstLine = withoutUrls.split(/[.!?\n]/).find(Boolean) || withoutUrls;
   return truncate(firstLine, 96) || 'Untitled update';
 }
 
@@ -297,12 +298,12 @@ function scoreRecency(publishedAt, now) {
   if (!date) return { points: 0, label: null };
 
   const ageHours = Math.max(0, (now.getTime() - date.getTime()) / 36e5);
-  if (ageHours <= 12) return { points: 32, label: '12 小时内发布' };
-  if (ageHours <= 24) return { points: 28, label: '24 小时内发布' };
-  if (ageHours <= 48) return { points: 22, label: '48 小时内发布' };
-  if (ageHours <= 72) return { points: 16, label: '72 小时内发布' };
-  if (ageHours <= 168) return { points: 10, label: '7 天内发布' };
-  return { points: 4, label: '较早发布' };
+  if (ageHours <= 12) return { points: 32, label: 'published within 12 hours' };
+  if (ageHours <= 24) return { points: 28, label: 'published within 24 hours' };
+  if (ageHours <= 48) return { points: 22, label: 'published within 48 hours' };
+  if (ageHours <= 72) return { points: 16, label: 'published within 72 hours' };
+  if (ageHours <= 168) return { points: 10, label: 'published this week' };
+  return { points: 4, label: 'older signal' };
 }
 
 function classifyAndScore(item, now) {
@@ -327,10 +328,10 @@ function classifyAndScore(item, now) {
 
   if (importantMatches.length) {
     const uniqueImportant = [...new Set(importantMatches)].slice(0, 5);
-    reasons.push(`包含 ${uniqueImportant.join(' / ')} 关键词`);
+    reasons.push(`mentions ${uniqueImportant.join(' / ')}`);
   } else if (matchedKeywords.length) {
     const uniqueMatches = [...new Set(matchedKeywords.map((match) => match.keyword))].slice(0, 4);
-    reasons.push(`包含 ${uniqueMatches.join(' / ')} 关键词`);
+    reasons.push(`matches ${uniqueMatches.join(' / ')}`);
   }
 
   const recency = scoreRecency(item.publishedAt, now);
@@ -339,30 +340,30 @@ function classifyAndScore(item, now) {
 
   if (item.url) {
     score += 8;
-    reasons.push('有原文链接');
+    reasons.push('source link available');
   }
 
   if (/https?:\/\/\S+/i.test(item.text || '')) {
     score += 4;
-    reasons.push('正文包含链接');
+    reasons.push('body includes links');
   }
 
   if (item.type === 'podcast') {
     score += 8;
     categoryScores.set('Podcast / Long-form', (categoryScores.get('Podcast / Long-form') || 0) + 100);
-    reasons.push('长内容来源');
+    reasons.push('long-form source');
   }
 
   if (item.type === 'blog') {
     score += 8;
     categoryScores.set('Blogs', (categoryScores.get('Blogs') || 0) + 100);
-    reasons.push('博客来源');
+    reasons.push('blog source');
   }
 
   if (typeof item.likes === 'number') {
     const engagement = Math.min(12, Math.floor(Math.log10(item.likes + 1) * 4));
     score += engagement;
-    if (engagement >= 6) reasons.push('互动较高');
+    if (engagement >= 6) reasons.push('strong engagement');
   }
 
   const category = [...categoryScores.entries()]
@@ -372,7 +373,7 @@ function classifyAndScore(item, now) {
     ...item,
     category,
     score: Math.min(100, Math.round(score)),
-    reason: reasons.length ? [...new Set(reasons)].join('；') : '按发布时间和来源基础分入选',
+    reason: reasons.length ? [...new Set(reasons)].join('; ') : 'ranked by recency and source quality',
     matchedKeywords: [...new Set(matchedKeywords.map((match) => match.keyword))]
   };
 }
@@ -460,63 +461,90 @@ function getStats(items) {
 
 function renderIndexHTML() {
   return `<!doctype html>
-<html lang="zh-CN">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="AI Builders Daily - latest AI builder messages, launches, agents, coding tools, infra and long-form updates.">
-    <title>AI Builders Daily</title>
+    <meta name="description" content="Shining Builders discovers what AI builders are saying and what they are building across Builder Signals and GitHub Weekly Stars.">
+    <title>Shining Builders</title>
     <link rel="stylesheet" href="./styles.css">
   </head>
   <body>
     <header class="site-header">
-      <nav class="topbar" aria-label="Top">
-        <a class="brand" href="./" aria-label="AI Builders Daily home">
-          <span class="brand-mark">AI</span>
-          <span>AI Builders Daily</span>
+      <nav class="topbar" aria-label="Top navigation">
+        <a class="brand" href="./" aria-label="Shining Builders home">
+          <span class="brand-mark">SB</span>
+          <span>Shining Builders</span>
         </a>
+        <div class="topnav" aria-label="Sections">
+          <a href="#builder-signals">Builder Signals</a>
+          <a href="#github-stars">GitHub Weekly Stars</a>
+          <a href="#practical-tools">Practical Tools</a>
+        </div>
         <div class="status-pill">
           <span class="status-dot"></span>
-          <span id="lastUpdated">Loading feed...</span>
+          <span id="lastUpdated">Loading feeds...</span>
         </div>
       </nav>
 
       <section class="hero">
         <div class="hero-copy">
-          <p class="eyebrow">Free static intelligence feed</p>
-          <h1>AI Builders Daily</h1>
-          <p class="hero-subtitle">最新 AI builders 消息、产品发布、agent workflow、coding 工具、模型基础设施与长内容。</p>
+          <p class="eyebrow">AI builder intelligence, rebuilt daily</p>
+          <h1>Shining Builders</h1>
+          <p class="hero-subtitle">Discover what AI builders are saying and what they are building.</p>
         </div>
         <div class="hero-panel" aria-label="Feed snapshot">
-          <span class="panel-label">Today</span>
-          <strong id="heroTotal">0</strong>
-          <span>items tracked</span>
+          <span class="panel-label">Signals</span>
+          <strong id="heroSignalsTotal">0</strong>
+          <span>builder updates</span>
+          <span class="panel-divider"></span>
+          <span class="panel-label">GitHub</span>
+          <strong id="heroReposTotal">0</strong>
+          <span>weekly repos</span>
         </div>
       </section>
     </header>
 
     <main>
-      <section class="stats-grid" id="statsGrid" aria-label="今日统计"></section>
+      <section class="stats-grid" id="statsGrid" aria-label="Site statistics"></section>
 
-      <section class="section-block">
+      <section class="section-block" id="builder-signals">
         <div class="section-heading">
           <div>
-            <p class="eyebrow">Highlights</p>
-            <h2>今日重点</h2>
-          </div>
-        </div>
-        <div class="highlight-list" id="highlightList"></div>
-      </section>
-
-      <section class="section-block">
-        <div class="section-heading browse-heading">
-          <div>
-            <p class="eyebrow">Browse</p>
-            <h2>分类与搜索</h2>
+            <p class="eyebrow">Builder Signals</p>
+            <h2>What builders are saying</h2>
           </div>
           <label class="high-score-toggle">
-            <input type="checkbox" id="highScoreOnly">
+            <input type="checkbox" id="signalsHighScoreOnly">
             <span>High score</span>
+          </label>
+        </div>
+
+        <div class="signal-highlights" id="signalHighlights"></div>
+
+        <div class="controls">
+          <div class="search-wrap">
+            <svg aria-hidden="true" viewBox="0 0 24 24">
+              <path d="M10.8 4.5a6.3 6.3 0 1 1 0 12.6 6.3 6.3 0 0 1 0-12.6Zm0 1.8a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9Zm5.2 10 4 4-1.3 1.3-4-4 1.3-1.3Z"></path>
+            </svg>
+            <input id="signalsSearchInput" type="search" placeholder="Search builders, topics, launches..." autocomplete="off">
+          </div>
+          <div class="tabs" id="signalsCategoryTabs" role="tablist" aria-label="Builder Signal categories"></div>
+        </div>
+
+        <div class="results-meta" id="signalsResultsMeta"></div>
+        <div class="items-grid" id="signalsGrid"></div>
+      </section>
+
+      <section class="section-block" id="github-stars">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">GitHub Weekly Stars</p>
+            <h2>Fast-moving AI projects</h2>
+          </div>
+          <label class="high-score-toggle">
+            <input type="checkbox" id="reposHighScoreOnly">
+            <span>High score repos</span>
           </label>
         </div>
 
@@ -525,18 +553,28 @@ function renderIndexHTML() {
             <svg aria-hidden="true" viewBox="0 0 24 24">
               <path d="M10.8 4.5a6.3 6.3 0 1 1 0 12.6 6.3 6.3 0 0 1 0-12.6Zm0 1.8a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9Zm5.2 10 4 4-1.3 1.3-4-4 1.3-1.3Z"></path>
             </svg>
-            <input id="searchInput" type="search" placeholder="Search builders, topics, tools..." autocomplete="off">
+            <input id="reposSearchInput" type="search" placeholder="Search repos, topics, languages..." autocomplete="off">
           </div>
-          <div class="tabs" id="categoryTabs" role="tablist" aria-label="分类"></div>
+          <div class="tabs" id="reposCategoryTabs" role="tablist" aria-label="GitHub repo categories"></div>
         </div>
 
-        <div class="results-meta" id="resultsMeta"></div>
-        <div class="items-grid" id="itemsGrid"></div>
+        <div class="results-meta" id="reposResultsMeta"></div>
+        <div class="repo-grid" id="reposGrid"></div>
+      </section>
+
+      <section class="section-block" id="practical-tools">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Practical Tools</p>
+            <h2>Useful repos worth trying</h2>
+          </div>
+        </div>
+        <div class="repo-grid compact" id="toolsGrid"></div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <span>Built by rules from public follow-builders feeds. No OpenAI API.</span>
+      <span>Built from public feeds and the GitHub REST API. No OpenAI API. No paid APIs.</span>
     </footer>
 
     <script src="./app.js" type="module"></script>
@@ -546,7 +584,7 @@ function renderIndexHTML() {
 }
 
 async function main() {
-  log('Fetching latest feed with prepare-digest.js...');
+  log('Fetching latest Builder Signals with prepare-digest.js...');
   const prepared = await loadPreparedDigest();
   const now = new Date();
   const { items } = flattenPreparedDigest(prepared);
@@ -565,7 +603,8 @@ async function main() {
     }));
 
   const payload = {
-    site: 'AI Builders Daily',
+    site: SITE_NAME,
+    module: 'Builder Signals',
     generatedAt: now.toISOString(),
     timezone: 'Asia/Shanghai',
     feedGeneratedAt: prepared.stats?.feedGeneratedAt || prepared.generatedAt || null,
@@ -581,7 +620,7 @@ async function main() {
   await writeFile(LATEST_JSON_PATH, `${JSON.stringify(payload, null, 2)}\n`, 'utf-8');
   await writeFile(INDEX_HTML_PATH, renderIndexHTML(), 'utf-8');
 
-  log(`Wrote ${scoredItems.length} items to ${LATEST_JSON_PATH}`);
+  log(`Wrote ${scoredItems.length} Builder Signals to ${LATEST_JSON_PATH}`);
   log(`Updated ${INDEX_HTML_PATH}`);
 }
 
